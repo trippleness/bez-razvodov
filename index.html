@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>БезРазводов — покраска стен и потолков</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --off-white:#FAFAF8;
+    --ink:#171A19;
+    --stone:#6B6F6D;
+    --stone-light:#A8ACAA;
+    --accent:#1B4332;
+    --accent-light:#2D6A4F;
+    --line:#E7E5E1;
+    --radius:999px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.02em;
+  }
+
+  a{text-decoration:none;color:inherit;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+  /* ================= HEADER ================= */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .header-inner{
+    max-width:1240px;
+    margin:0 auto;
+    padding:20px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:600;
+    white-space:nowrap;
+  }
+
+  nav{
+    display:flex;
+    align-items:center;
+    gap:40px;
+  }
+
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+  }
+
+  .nav-links a{
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+    position:relative;
+    padding-bottom:4px;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0%;
+    height:1.5px;
+    background:var(--accent);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .header-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+
+  .phone{
+    font-size:15px;
+    font-weight:600;
+    display:flex;
+    flex-direction:column;
+    line-height:1.25;
+    text-align:right;
+  }
+  .phone span{
+    font-size:11px;
+    font-weight:500;
+    color:var(--stone);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+
+  .btn-primary{
+    background:var(--accent);
+    color:var(--white);
+    padding:12px 26px;
+    border-radius:var(--radius);
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+    transition:background .2s ease, transform .2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn-primary:hover{background:var(--accent-light);transform:translateY(-1px);}
+
+  .burger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    width:28px;
+    background:none;
+  }
+  .burger span{
+    display:block;
+    height:2px;
+    background:var(--ink);
+    border-radius:2px;
+    transition:.25s ease;
+  }
+  .burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.active span:nth-child(2){opacity:0;}
+  .burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    padding:12px 32px 24px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    padding:14px 0;
+    font-size:16px;
+    font-weight:500;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-menu .btn-primary{
+    margin-top:18px;
+    justify-content:center;
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    height:calc(100vh - var(--header-h, 73px));
+    display:flex;
+    align-items:center;
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:64px;
+    align-items:center;
+    width:100%;
+    padding:48px 0;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:rgba(27,67,50,0.06);
+    padding:8px 14px;
+    border-radius:var(--radius);
+    margin-bottom:24px;
+  }
+  .eyebrow-dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(38px, 4.6vw, 60px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+
+  .hero h1 em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:500;
+  }
+
+  .hero-sub{
+    font-size:18px;
+    line-height:1.6;
+    color:var(--stone);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+
+  .hero-cta-row{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    margin-bottom:52px;
+    flex-wrap:wrap;
+  }
+
+  .btn-large{
+    background:var(--accent);
+    color:var(--white);
+    padding:17px 32px;
+    border-radius:var(--radius);
+    font-size:16px;
+    font-weight:600;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .btn-large:hover{background:var(--accent-light);transform:translateY(-1px);}
+
+  .cta-note{
+    font-size:14px;
+    color:var(--stone);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .cta-note svg{flex-shrink:0;}
+
+  /* signature: even coat divider */
+  .coat-line{
+    height:3px;
+    width:100%;
+    max-width:480px;
+    border-radius:3px;
+    background:linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent) 100%);
+    margin-bottom:32px;
+    position:relative;
+    overflow:hidden;
+  }
+  .coat-line::after{
+    content:'';
+    position:absolute;
+    top:0;left:-100%;
+    width:60%;
+    height:100%;
+    background:rgba(255,255,255,0.55);
+    filter:blur(6px);
+    animation:sweep 3.2s ease-in-out infinite;
+  }
+  @keyframes sweep{
+    0%{left:-60%;}
+    60%{left:110%;}
+    100%{left:110%;}
+  }
+
+  .stats-row{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+
+  .stat{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .stat-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:26px;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .stat-num span{
+    color:var(--accent);
+  }
+  .stat-label{
+    font-size:13px;
+    color:var(--stone);
+    max-width:140px;
+    line-height:1.4;
+  }
+
+  /* ---- photo placeholder ---- */
+  .hero-media{
+    position:relative;
+    width:100%;
+    aspect-ratio:4/5;
+    border-radius:20px;
+    background:var(--off-white);
+    border:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-media-placeholder{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    color:var(--stone-light);
+  }
+  .hero-media-placeholder svg{opacity:0.55;}
+  .hero-media-placeholder span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+
+  .media-badge{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    right:20px;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .media-badge-icon{
+    width:38px;height:38px;
+    border-radius:10px;
+    background:var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .media-badge-text{
+    font-size:13px;
+    line-height:1.4;
+    color:var(--ink);
+  }
+  .media-badge-text b{font-weight:600;}
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width:900px){
+    nav{display:none;}
+    .header-right .phone{display:none;}
+    .burger{display:flex;}
+
+    .hero{height:auto;min-height:100vh;padding:0 24px;}
+    .hero-grid{
+      grid-template-columns:1fr;
+      gap:32px;
+      padding:36px 0 48px;
+    }
+    .hero-media{aspect-ratio:16/11;}
+    .hero h1{font-size:34px;}
+    .hero-sub{font-size:16px;max-width:100%;}
+    .stats-row{gap:28px;}
+  }
+
+  @media (max-width:480px){
+    .header-inner{padding:16px 20px;}
+    .stats-row{gap:22px;}
+    .stat-num{font-size:22px;}
+    .btn-large{width:100%;text-align:center;}
+    .hero-cta-row{flex-direction:column;align-items:flex-start;gap:14px;width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      БезРазводов
+    </a>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#prices">Цены</a></li>
+        <li><a href="#why">Почему мы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <div class="phone">
+        <span>Звонок бесплатный</span>
+        +7 953 102-22-82
+      </div>
+      <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-primary">Оставить заявку</a>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Услуги</a>
+    <a href="#prices">Цены</a>
+    <a href="#why">Почему мы</a>
+    <a href="#contacts">Контакты</a>
+    <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-primary">Оставить заявку</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Безвоздушная покраска · Краснодар и край
+      </div>
+
+      <h1>Покраска стен<br>и потолков <em>без единого<br>развода</em></h1>
+
+      <div class="coat-line"></div>
+
+      <p class="hero-sub">
+        Профессиональная покраска домов, квартир и коммерческих помещений безвоздушным методом. Ровное покрытие с первого раза — без полос, подтёков и переплат за лишнюю краску.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-large">Получить расчёт за 5 минут</a>
+        <div class="cta-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1B4332" stroke-width="1.6"/><path d="M8 12L11 15L16 9" stroke="#1B4332" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Бесплатный замер и смета
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num mono"><span>−30%</span></div>
+          <div class="stat-label">экономия краски за счёт технологии</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num mono">1000 <span>м²</span></div>
+          <div class="stat-label">производительность за одну смену</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num mono">от 100 <span>₽/м²</span></div>
+          <div class="stat-label">фиксированная стоимость в смете</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-media hero-order-media">
+      <div class="hero-media-placeholder">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#A8ACAA" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" stroke="#A8ACAA" stroke-width="1.5"/><path d="M21 15L16 10L5 21" stroke="#A8ACAA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Фото объекта</span>
+      </div>
+      <div class="media-badge">
+        <div class="media-badge-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="media-badge-text"><b>Официальный договор</b><br>Гарантия на все выполненные работы</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    menu.classList.toggle('open');
+  });
+
+  function setHeaderHeight(){
+    const header = document.querySelector('header');
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
+  setHeaderHeight();
+  window.addEventListener('resize', setHeaderHeight);
+</script>
+
+</body>
+</html>
