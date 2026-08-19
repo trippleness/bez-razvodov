@@ -3,49 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>БезРазводов — покраска стен и потолков</title>
+<title>БезРазводов | Покраска стен и потолков в Краснодаре и Адыгее</title>
+<meta name="description" content="Покраска стен и потолков безвоздушным способом в Краснодаре, Краснодарском крае и Адыгее. Квартиры, дома, склады, ангары и коммерческие помещения. Расчет стоимости за 5 минут.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="БезРазводов | Покраска стен и потолков без разводов">
+<meta property="og:description" content="Профессиональная покраска квартир, домов, складов и коммерческих помещений. До 1000 м² за смену, фиксированная смета, договор и аккуратная сдача объекта.">
+<meta property="og:locale" content="ru_RU">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --white:#FFFFFF;
     --off-white:#FAFAF8;
+    --surface:#F5F3EF;
     --ink:#171A19;
     --stone:#6B6F6D;
     --stone-light:#A8ACAA;
     --accent:#1B4332;
     --accent-light:#2D6A4F;
+    --accent-soft:#D9E7DF;
     --line:#E7E5E1;
+    --shadow:none;
     --radius:999px;
+    --card-radius:28px;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
-
   html{scroll-behavior:smooth;}
-
   body{
     font-family:'Inter',sans-serif;
     color:var(--ink);
     background:var(--white);
     -webkit-font-smoothing:antialiased;
-  }
-
-  .mono{
-    font-family:'JetBrains Mono',monospace;
-    letter-spacing:0.02em;
+    overflow-x:hidden;
   }
 
   a{text-decoration:none;color:inherit;}
   button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  img{max-width:100%;display:block;}
+  .mono{font-family:'JetBrains Mono',monospace;letter-spacing:0.02em;}
 
-  /* ================= HEADER ================= */
   header{
     position:sticky;
     top:0;
+    left:0;
+    width:100%;
     z-index:100;
+    margin:0;
+    padding:20px 0;
     background:rgba(255,255,255,0.92);
     backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid rgba(231,229,225,0.9);
   }
 
   .header-inner{
@@ -55,6 +64,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:24px;
   }
 
   .logo{
@@ -91,8 +101,9 @@
   .nav-links a::after{
     content:'';
     position:absolute;
-    left:0;bottom:0;
-    width:0%;
+    left:0;
+    bottom:0;
+    width:0;
     height:1.5px;
     background:var(--accent);
     transition:width .25s ease;
@@ -108,41 +119,71 @@
   .phone{
     font-size:15px;
     font-weight:600;
-    display:flex;
-    flex-direction:column;
-    line-height:1.25;
+    display:block;
+    line-height:1;
     text-align:right;
   }
-  .phone span{
-    font-size:11px;
-    font-weight:500;
-    color:var(--stone);
-    text-transform:uppercase;
-    letter-spacing:0.05em;
+
+  .btn-primary,
+  .btn-large{
+    background:var(--accent);
+    color:var(--white);
+    border-radius:var(--radius);
+    font-weight:600;
+    white-space:nowrap;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+    box-shadow:0 12px 30px rgba(27,67,50,0.18);
   }
 
   .btn-primary{
-    background:var(--accent);
-    color:var(--white);
     padding:12px 26px;
-    border-radius:var(--radius);
     font-size:14px;
-    font-weight:600;
-    white-space:nowrap;
-    transition:background .2s ease, transform .2s ease;
+  }
+
+  .btn-large{
+    padding:15px 30px;
+    font-size:16px;
+  }
+
+  .btn-primary:hover,
+  .btn-large:hover{
+    background:var(--accent-light);
+    transform:translateY(-1px);
+    box-shadow:0 16px 36px rgba(27,67,50,0.24);
+  }
+
+  .btn-secondary{
     display:inline-flex;
     align-items:center;
-    gap:8px;
+    justify-content:center;
+    gap:10px;
+    padding:14px 28px;
+    border-radius:var(--radius);
+    border:1px solid rgba(27,67,50,0.16);
+    color:var(--ink);
+    background:rgba(255,255,255,0.7);
+    font-size:15px;
+    font-weight:600;
+    transition:border-color .2s ease, transform .2s ease, background .2s ease;
   }
-  .btn-primary:hover{background:var(--accent-light);transform:translateY(-1px);}
+
+  .btn-secondary:hover{
+    border-color:rgba(27,67,50,0.32);
+    transform:translateY(-1px);
+    background:rgba(255,255,255,0.95);
+  }
 
   .burger{
     display:none;
     flex-direction:column;
     gap:5px;
     width:28px;
-    background:none;
   }
+
   .burger span{
     display:block;
     height:2px;
@@ -150,6 +191,7 @@
     border-radius:2px;
     transition:.25s ease;
   }
+
   .burger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .burger.active span:nth-child(2){opacity:0;}
   .burger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
@@ -161,36 +203,37 @@
     border-bottom:1px solid var(--line);
     padding:12px 32px 24px;
   }
+
   .mobile-menu.open{display:flex;}
+
   .mobile-menu a{
     padding:14px 0;
     font-size:16px;
     font-weight:500;
     border-bottom:1px solid var(--line);
   }
+
   .mobile-menu .btn-primary{
     margin-top:18px;
-    justify-content:center;
   }
 
-  /* ================= HERO ================= */
   .hero{
-    height:calc(100vh - var(--header-h, 73px));
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     max-width:1240px;
+    height:auto;
     margin:0 auto;
-    padding:0 32px;
+    padding:10px 2rem 80px;
+    padding-top:10px;
   }
 
   .hero-grid{
     display:grid;
     grid-template-columns:1.05fr 0.95fr;
     gap:64px;
-    align-items:stretch;
+    align-items:flex-start;
     width:100%;
-    height:100%;
-    padding:36px 0 16px;
+    padding:0;
   }
 
   .hero-text{
@@ -198,6 +241,7 @@
     flex-direction:column;
     justify-content:flex-start;
     height:100%;
+    margin-top:0;
   }
 
   .eyebrow{
@@ -213,10 +257,13 @@
     background:rgba(27,67,50,0.06);
     padding:8px 14px;
     border-radius:var(--radius);
+    margin-top:0;
     margin-bottom:18px;
   }
+
   .eyebrow-dot{
-    width:6px;height:6px;
+    width:6px;
+    height:6px;
     border-radius:50%;
     background:var(--accent);
   }
@@ -228,6 +275,7 @@
     line-height:1.08;
     letter-spacing:-0.01em;
     color:var(--ink);
+    margin-top:0;
     margin-bottom:18px;
   }
 
@@ -253,17 +301,6 @@
     flex-wrap:wrap;
   }
 
-  .btn-large{
-    background:var(--accent);
-    color:var(--white);
-    padding:15px 30px;
-    border-radius:var(--radius);
-    font-size:16px;
-    font-weight:600;
-    transition:background .2s ease, transform .2s ease;
-  }
-  .btn-large:hover{background:var(--accent-light);transform:translateY(-1px);}
-
   .cta-note{
     font-size:14px;
     color:var(--stone);
@@ -271,9 +308,9 @@
     align-items:center;
     gap:8px;
   }
+
   .cta-note svg{flex-shrink:0;}
 
-  /* signature: even coat divider */
   .coat-line{
     height:3px;
     width:100%;
@@ -284,16 +321,19 @@
     position:relative;
     overflow:hidden;
   }
+
   .coat-line::after{
     content:'';
     position:absolute;
-    top:0;left:-100%;
+    top:0;
+    left:-100%;
     width:60%;
     height:100%;
     background:rgba(255,255,255,0.55);
     filter:blur(6px);
     animation:sweep 3.2s ease-in-out infinite;
   }
+
   @keyframes sweep{
     0%{left:-60%;}
     60%{left:110%;}
@@ -312,15 +352,16 @@
     flex-direction:column;
     gap:4px;
   }
+
   .stat-num{
     font-family:'JetBrains Mono',monospace;
     font-size:26px;
     font-weight:500;
     color:var(--ink);
   }
-  .stat-num span{
-    color:var(--accent);
-  }
+
+  .stat-num span{color:var(--accent);}
+
   .stat-label{
     font-size:13px;
     color:var(--stone);
@@ -328,27 +369,36 @@
     line-height:1.4;
   }
 
-  /* ---- photo placeholder ---- */
   .hero-media{
     position:relative;
     width:100%;
     height:100%;
     border-radius:20px;
-    background:var(--off-white);
-    border:1px solid var(--line);
+    background:
+      linear-gradient(180deg, rgba(27,67,50,0.02) 0%, rgba(27,67,50,0.08) 100%),
+      var(--off-white);
     display:flex;
     align-items:center;
     justify-content:center;
     overflow:hidden;
   }
+
+  .hero-media::before{
+    content:none;
+  }
+
   .hero-media-placeholder{
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:10px;
     color:var(--stone-light);
+    position:relative;
+    z-index:1;
   }
+
   .hero-media-placeholder svg{opacity:0.55;}
+
   .hero-media-placeholder span{
     font-family:'JetBrains Mono',monospace;
     font-size:12px;
@@ -363,15 +413,17 @@
     right:20px;
     background:rgba(255,255,255,0.92);
     backdrop-filter:blur(6px);
-    border:1px solid var(--line);
     border-radius:16px;
     padding:16px 18px;
     display:flex;
     align-items:center;
     gap:14px;
+    box-shadow:none;
   }
+
   .media-badge-icon{
-    width:38px;height:38px;
+    width:38px;
+    height:38px;
     border-radius:10px;
     background:var(--accent);
     display:flex;
@@ -379,39 +431,976 @@
     justify-content:center;
     flex-shrink:0;
   }
+
   .media-badge-text{
     font-size:13px;
     line-height:1.4;
     color:var(--ink);
   }
+
   .media-badge-text b{font-weight:600;}
 
-  /* ================= RESPONSIVE ================= */
+  main{
+    padding:10px 32px 0;
+  }
+
+  .section{
+    max-width:1240px;
+    margin:0 auto;
+    min-height:auto;
+    padding:80px 0;
+    display:flex;
+    align-items:flex-start;
+  }
+
+  .section-card{
+    width:100%;
+    border-radius:36px;
+    background:#FFFFFF;
+    box-shadow:none;
+    padding:0 56px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .section-card::after{
+    content:none;
+  }
+
+  .section-top{
+    display:flex;
+    justify-content:space-between;
+    gap:24px;
+    align-items:flex-start;
+    margin-bottom:42px;
+    position:relative;
+    z-index:1;
+  }
+
+  .section-top.full-width{
+    display:block;
+  }
+
+  .section-kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-family:'JetBrains Mono',monospace;
+    margin-bottom:14px;
+  }
+
+  .section-title{
+    font-family:'Fraunces',serif;
+    font-size:clamp(32px, 4vw, 48px);
+    line-height:1.08;
+    letter-spacing:-0.02em;
+    max-width:720px;
+  }
+
+  .section-title--wide{
+    max-width:60rem;
+    font-size:clamp(34px, 4vw, 52px);
+    line-height:1.08;
+  }
+
+  .section-title--services{
+    max-width:58rem;
+    font-size:clamp(30px, 3.45vw, 44px);
+    line-height:1.08;
+  }
+
+  .section-lead{
+    max-width:420px;
+    font-size:16px;
+    line-height:1.65;
+    color:var(--stone);
+  }
+
+  .trust-grid,
+  .segment-grid,
+  .price-grid,
+  .benefit-grid,
+  .why-grid,
+  .portfolio-grid,
+  .faq-grid{
+    display:grid;
+    gap:24px;
+    position:relative;
+    z-index:1;
+  }
+
+  .trust-grid{grid-template-columns:repeat(4, minmax(0, 1fr));}
+  .segment-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
+  .price-grid{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+  }
+  .benefit-grid{
+    grid-template-columns:1.05fr 0.95fr;
+    align-items:stretch;
+  }
+  .why-grid{grid-template-columns:repeat(3, minmax(0, 1fr));}
+  .portfolio-grid{grid-template-columns:1.1fr 0.9fr;}
+  .faq-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
+
+  .info-card,
+  .segment-card,
+  .price-card,
+  .list-card,
+  .why-card,
+  .portfolio-card,
+  .faq-card,
+  .cta-card{
+    border-radius:28px;
+    background:#FFFFFF;
+    box-shadow:none;
+  }
+
+  .info-card{
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    gap:1rem;
+    min-height:23rem;
+    background:var(--off-white);
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+
+  .info-card:hover{
+    transform:translateY(-4px);
+    box-shadow:none;
+    border-color:transparent;
+  }
+
+  .info-card.accent{
+    background:linear-gradient(180deg, rgba(27,67,50,0.96), rgba(27,67,50,0.9));
+    border-color:rgba(27,67,50,0.9);
+    color:var(--white);
+    box-shadow:none;
+  }
+
+  .info-icon{
+    width:4.25rem;
+    height:4.25rem;
+    border-radius:1.25rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(27,67,50,0.08);
+    color:var(--accent);
+  }
+
+  .info-icon svg{
+    width:1.65rem;
+    height:1.65rem;
+  }
+
+  .info-card.accent .info-icon{
+    background:rgba(255,255,255,0.12);
+    color:var(--white);
+  }
+
+  .info-card .mono{
+    font-size:14px;
+    color:var(--accent);
+    margin-top:0.25rem;
+  }
+
+  .info-card.accent .mono{
+    color:rgba(255,255,255,0.82);
+  }
+
+  .info-card h3{
+    font-family:'Fraunces',serif;
+    font-size:28px;
+    line-height:1.05;
+    font-weight:500;
+    letter-spacing:-0.02em;
+    min-height:3.75rem;
+    display:flex;
+    align-items:flex-start;
+  }
+
+  .info-card p{
+    color:var(--stone);
+    line-height:1.55;
+    font-size:15px;
+  }
+
+  .info-card.accent p{
+    color:rgba(255,255,255,0.82);
+  }
+
+  .segment-card,
+  .price-card,
+  .why-card{
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    min-height:18rem;
+    background:#F5F6F7;
+  }
+
+  .segment-card{
+    min-height:40rem;
+    justify-content:flex-start;
+    background:var(--off-white);
+    overflow:hidden;
+    padding:2rem;
+    gap:1.5rem;
+  }
+
+  .segment-visual{
+    min-height:16rem;
+    border-radius:1.5rem;
+    padding:1.5rem;
+    display:flex;
+    align-items:flex-end;
+    position:relative;
+    overflow:hidden;
+    background-color:#e9ece7;
+    background-size:cover;
+    background-position:center;
+  }
+
+  .segment-visual::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(23,26,25,0.02) 0%, rgba(23,26,25,0.24) 100%);
+  }
+
+  .segment-visual--residential{
+    background-image:
+      linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)),
+      linear-gradient(120deg, rgba(27,67,50,0.08), rgba(27,67,50,0.16)),
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.75), transparent 28%),
+      url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80");
+  }
+
+  .segment-visual--industrial{
+    background-image:
+      linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+      linear-gradient(120deg, rgba(27,67,50,0.16), rgba(23,26,25,0.28)),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.22), transparent 28%),
+      url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80");
+  }
+
+  .segment-visual-label{
+    position:relative;
+    z-index:1;
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:0.75rem 1rem;
+    border-radius:999px;
+    background:rgba(255,255,255,0.88);
+    color:var(--accent);
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+
+  .segment-tag,
+  .price-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    width:max-content;
+    padding:8px 14px;
+    border-radius:var(--radius);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.07em;
+    background:rgba(27,67,50,0.08);
+    color:var(--accent);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  .segment-card h3,
+  .price-card h3,
+  .why-card h3,
+  .portfolio-card h3,
+  .cta-card h3{
+    font-family:'Fraunces',serif;
+    font-size:28px;
+    line-height:1.1;
+    font-weight:500;
+  }
+
+  .why-card h3{
+    min-height:60px;
+  }
+
+  .segment-card p,
+  .price-card p,
+  .why-card p,
+  .portfolio-card p,
+  .faq-item p,
+  .cta-card p{
+    color:var(--stone);
+    line-height:1.6;
+    font-size:15px;
+  }
+
+  .segment-copy{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    flex:1;
+  }
+
+  .segment-points,
+  .why-points,
+  .process-list,
+  .portfolio-points,
+  .contact-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .segment-points li,
+  .why-points li,
+  .portfolio-points li,
+  .contact-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    color:var(--ink);
+    line-height:1.5;
+    font-size:15px;
+  }
+
+  .segment-points li::before,
+  .why-points li::before,
+  .portfolio-points li::before,
+  .contact-list li::before{
+    content:'';
+    width:7px;
+    height:7px;
+    margin-top:8px;
+    border-radius:50%;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+
+  .price-card{
+    flex:1 1 0;
+    min-height:26rem;
+    justify-content:space-between;
+    background:#F5F6F7;
+    padding:2rem;
+    gap:1.5rem;
+  }
+
+  .price-copy{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+
+  .price-card .btn-secondary{
+    width:100%;
+    margin-top:auto;
+    background:var(--accent);
+    color:var(--white);
+    border:none;
+    box-shadow:0 12px 30px rgba(27,67,50,0.16);
+  }
+
+  .price-card .btn-secondary:hover{
+    background:var(--accent-light);
+    border-color:transparent;
+    box-shadow:0 16px 36px rgba(27,67,50,0.22);
+  }
+
+  .price-value{
+    font-family:'Fraunces',serif;
+    font-size:48px;
+    line-height:1;
+    letter-spacing:-0.03em;
+  }
+
+  .price-value span{
+    font-size:22px;
+    color:var(--stone);
+  }
+
+  .benefit-grid .list-card{
+    padding:34px;
+    height:100%;
+  }
+
+  .list-card{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  .benefit-card{
+    background:var(--off-white);
+    border-radius:1.75rem;
+    padding:2rem;
+  }
+
+  .split-note{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    flex:1;
+  }
+
+  .mini-panel{
+    padding:20px;
+    border-radius:22px;
+    background:var(--surface);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+  }
+
+  .mini-panel--accent{
+    background:linear-gradient(180deg, rgba(27,67,50,0.96), rgba(27,67,50,0.9));
+  }
+
+  .mini-panel h4{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+
+  .mini-panel p{
+    font-size:15px;
+    line-height:1.55;
+    color:var(--stone);
+  }
+
+  .mini-panel--accent h4,
+  .mini-panel--accent p{
+    color:var(--white);
+  }
+
+  .result-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:1.25rem;
+  }
+
+  .result-item{
+    display:grid;
+    grid-template-columns:4rem 1fr;
+    gap:1rem;
+    align-items:start;
+    padding:1.5rem 0;
+    border-bottom:1px solid rgba(23,26,25,0.08);
+  }
+
+  .result-item:last-child{
+    border-bottom:none;
+    padding-bottom:0;
+  }
+
+  .result-number{
+    width:3.5rem;
+    height:3.5rem;
+    border-radius:1.125rem;
+    background:var(--accent);
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.95rem;
+    box-shadow:0 0.75rem 1.5rem rgba(27,67,50,0.16);
+  }
+
+  .result-title{
+    font-size:1.5rem;
+    line-height:1.15;
+    font-weight:600;
+    margin-bottom:0.4rem;
+  }
+
+  .result-text{
+    color:var(--stone);
+    line-height:1.6;
+    font-size:0.95rem;
+  }
+
+  .process-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:1.5rem;
+  }
+
+  .process-card{
+    background:#F5F6F7;
+    border-radius:1.75rem;
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    min-height:18rem;
+  }
+
+  .process-number{
+    width:3.5rem;
+    height:3.5rem;
+    border-radius:999px;
+    background:var(--accent);
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.95rem;
+    box-shadow:0 0.75rem 1.5rem rgba(27,67,50,0.16);
+  }
+
+  .step-title{
+    font-size:1.25rem;
+    line-height:1.2;
+    font-weight:700;
+  }
+
+  .step-desc{
+    color:var(--stone);
+    line-height:1.6;
+    font-size:0.95rem;
+  }
+
+  .why-card{
+    min-height:18rem;
+    justify-content:space-between;
+  }
+
+  .why-number{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--accent);
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  .portfolio-card{
+    padding:34px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .measure-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:1.5rem;
+  }
+
+  .measure-card{
+    border-radius:1.75rem;
+    padding:2rem;
+    min-height:26rem;
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+  }
+
+  .measure-card--light{
+    background:#F5F6F7;
+  }
+
+  .measure-card--dark{
+    background:linear-gradient(180deg, rgba(27,67,50,0.98), rgba(27,67,50,0.9));
+    color:var(--white);
+    justify-content:space-between;
+  }
+
+  .measure-list{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+
+  .measure-list li{
+    display:grid;
+    grid-template-columns:0.75rem 1fr;
+    gap:0.875rem;
+    align-items:start;
+  }
+
+  .measure-list li::before{
+    content:'';
+    width:0.5rem;
+    height:0.5rem;
+    border-radius:50%;
+    background:var(--accent);
+    margin-top:0.45rem;
+  }
+
+  .measure-item-title{
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:0.25rem;
+  }
+
+  .measure-item-text{
+    color:var(--stone);
+    line-height:1.6;
+    font-size:0.95rem;
+  }
+
+  .measure-card--dark p{
+    color:rgba(255,255,255,0.84);
+    font-size:1rem;
+    line-height:1.65;
+  }
+
+  .measure-form{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    margin-top:auto;
+  }
+
+  .measure-input{
+    width:100%;
+    border:none;
+    border-radius:1rem;
+    padding:1rem 1.125rem;
+    background:rgba(255,255,255,0.96);
+    color:var(--ink);
+    font-size:1rem;
+    outline:none;
+  }
+
+  .measure-input::placeholder{
+    color:#6B6F6D;
+  }
+
+  .measure-submit{
+    width:100%;
+    border:none;
+    border-radius:999px;
+    padding:1rem 1.25rem;
+    background:var(--white);
+    color:var(--accent);
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    box-shadow:0 0.75rem 1.75rem rgba(0,0,0,0.12);
+  }
+
+  .measure-submit:hover{
+    transform:translateY(-2px);
+    background:#F5F6F7;
+    box-shadow:0 1rem 2rem rgba(0,0,0,0.16);
+  }
+
+  .portfolio-visual{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:18px;
+  }
+
+  .shot{
+    min-height:220px;
+    border-radius:24px;
+    background:
+      linear-gradient(135deg, rgba(27,67,50,0.08), rgba(27,67,50,0.02)),
+      var(--off-white);
+    display:flex;
+    align-items:flex-end;
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .shot::before{
+    content:none;
+  }
+
+  .shot-label{
+    position:relative;
+    z-index:1;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  .faq-card,
+  .cta-card{
+    padding:34px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  .section-top--single{
+    display:block;
+    margin-bottom:32px;
+  }
+
+  .faq-block{
+    gap:32px;
+  }
+
+  .faq-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:18px;
+  }
+
+  .faq-item{
+    padding:20px 22px;
+    border-radius:22px;
+    background:var(--surface);
+  }
+
+  .faq-item h4{
+    font-size:17px;
+    margin-bottom:8px;
+  }
+
+  .final-cta-card{
+    width:100%;
+    background:#1b4332;
+    border-radius:16px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap:32px;
+    align-items:center;
+  }
+
+  .final-cta-copy{
+    color:#FFFFFF;
+  }
+
+  .final-cta-copy h3{
+    font-family:'Fraunces',serif;
+    font-size:clamp(30px, 3vw, 42px);
+    line-height:1.06;
+    font-weight:500;
+    margin-bottom:14px;
+  }
+
+  .final-cta-copy p{
+    max-width:34rem;
+    color:rgba(255,255,255,0.82);
+    font-size:17px;
+    line-height:1.6;
+  }
+
+  .cta-actions{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .final-cta-card .btn-large,
+  .final-cta-card .btn-secondary{
+    width:100%;
+  }
+
+  .final-cta-card .btn-large{
+    background:#FFFFFF;
+    color:#1b4332;
+    box-shadow:none;
+  }
+
+  .final-cta-card .btn-large:hover{
+    background:#f3f5f4;
+    color:#1b4332;
+  }
+
+  .final-cta-card .btn-secondary{
+    border-color:rgba(255,255,255,0.5);
+    background:transparent;
+    color:#FFFFFF;
+  }
+
+  .final-cta-card .btn-secondary:hover{
+    border-color:#FFFFFF;
+    background:rgba(255,255,255,0.08);
+  }
+
+  .section--cta{
+    margin-top:40px;
+    padding-top:0;
+  }
+
+  .legal{
+    font-size:13px;
+    line-height:1.55;
+    color:var(--stone);
+  }
+
+  .site-footer{
+    padding:40px 0;
+    border-top:1px solid rgba(23,26,25,0.08);
+    background:#f8f9fa;
+  }
+
+  .site-footer__inner{
+    max-width:77.5rem;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:32px;
+    padding:0 32px;
+  }
+
+  .site-footer__brand{
+    font-family:'Fraunces',serif;
+    font-size:1.5rem;
+    line-height:1.1;
+  }
+
+  .site-footer__text{
+    color:var(--stone);
+    font-size:0.9375rem;
+    line-height:1.6;
+  }
+
+  .site-footer__nav,
+  .site-footer__contacts{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .site-footer__nav a,
+  .site-footer__contacts a{
+    color:var(--ink);
+    font-size:15px;
+    line-height:1.5;
+  }
+
+  .site-footer__nav a:hover,
+  .site-footer__contacts a:hover{
+    color:var(--accent);
+  }
+
+  .site-footer__phone{
+    font-size:24px;
+    font-weight:600;
+    line-height:1.2;
+  }
+
+  .site-footer__policy{
+    color:var(--stone) !important;
+    font-size:14px !important;
+  }
+
+  .section:last-child{margin-bottom:0;}
+
+  @media (max-width:1100px){
+    .trust-grid,
+    .why-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
+    .benefit-grid,
+    .portfolio-grid{grid-template-columns:1fr;}
+    .section-card{padding:0 2.75rem;}
+    .segment-grid{grid-template-columns:1fr;}
+    .price-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));}
+    .process-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}
+    .measure-grid{grid-template-columns:1fr;}
+    .final-cta-card{grid-template-columns:1fr;}
+    .site-footer__inner{
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+  }
+
   @media (max-width:900px){
     nav{display:none;}
     .header-right .phone{display:none;}
     .burger{display:flex;}
-
-    .hero{height:auto;min-height:100vh;padding:0 24px;}
+    .hero{
+      padding:10px 1.5rem 80px;
+    }
     .hero-grid{
       grid-template-columns:1fr;
       gap:32px;
-      height:auto;
-      padding:36px 0 48px;
+      padding:0;
     }
-    .hero-text{display:block !important;height:auto !important;}
-    .hero-media{height:auto;aspect-ratio:16/11;}
+    .hero-text{
+      display:block;
+      height:auto;
+    }
+    .hero-media{
+      height:auto;
+      aspect-ratio:16/11;
+    }
     .hero h1{font-size:34px;}
     .hero-sub{font-size:16px;max-width:100%;}
     .stats-row{gap:28px;}
+    main{padding:10px 24px 0;}
+    .section{padding:64px 0;}
+    .section-top,
+    .segment-grid,
+    .trust-grid,
+    .why-grid,
+    .split-note,
+    .portfolio-visual,
+    .faq-grid{grid-template-columns:1fr;}
+    .section-top{display:grid;}
+    .site-footer__inner{
+      flex-direction:column;
+      align-items:flex-start;
+      padding:0 24px;
+    }
+    .price-grid{display:grid;grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr;}
   }
 
   @media (max-width:480px){
     .header-inner{padding:16px 20px;}
+    .mobile-menu{padding:12px 20px 24px;}
+    .hero-cta-row{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:14px;
+      width:100%;
+    }
+    .hero{padding:10px 1.25rem 80px;}
+    .btn-large,
+    .btn-primary,
+    .btn-secondary{
+      width:100%;
+      text-align:center;
+    }
     .stats-row{gap:22px;}
     .stat-num{font-size:22px;}
-    .btn-large{width:100%;text-align:center;}
-    .hero-cta-row{flex-direction:column;align-items:flex-start;gap:14px;width:100%;}
+    .section{padding:50px 0;}
+    .section-card{
+      padding:0 1.25rem;
+      border-radius:28px;
+    }
+    .site-footer__inner{padding:0 20px;}
+    .price-value{font-size:40px;}
   }
 </style>
 </head>
@@ -419,9 +1408,7 @@
 
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">
-      БезРазводов
-    </a>
+    <a href="#" class="logo">БезРазводов</a>
 
     <nav>
       <ul class="nav-links">
@@ -433,12 +1420,11 @@
     </nav>
 
     <div class="header-right">
-      <div class="phone">
-        <span>Звонок бесплатный</span>
+      <a href="tel:+79531022282" class="phone">
         +7 953 102-22-82
-      </div>
+      </a>
       <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-primary">Оставить заявку</a>
-      <button class="burger" id="burger" aria-label="Меню">
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -453,6 +1439,7 @@
   </div>
 </header>
 
+<main>
 <section class="hero">
   <div class="hero-grid">
     <div class="hero-text">
@@ -466,21 +1453,22 @@
       <div class="coat-line"></div>
 
       <p class="hero-sub">
-        Профессиональная покраска домов, квартир и коммерческих помещений безвоздушным методом. Ровное покрытие с первого раза — без полос, подтёков и переплат за лишнюю краску.
+        Профессионально красим квартиры, дома, коммерческие помещения, склады и ангары.
+        Ровное покрытие с первого прохода без подтеков, полос и лишнего расхода краски.
       </p>
 
       <div class="hero-cta-row">
-        <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-large">Получить расчёт за 5 минут</a>
+        <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-large">Получить расчет за 5 минут</a>
         <div class="cta-note">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1B4332" stroke-width="1.6"/><path d="M8 12L11 15L16 9" stroke="#1B4332" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Бесплатный замер и смета
+          Бесплатный выезд, замер и смета
         </div>
       </div>
 
       <div class="stats-row">
         <div class="stat">
-          <div class="stat-num mono"><span>−30%</span></div>
-          <div class="stat-label">экономия краски за счёт технологии</div>
+          <div class="stat-num mono"><span>-30%</span></div>
+          <div class="stat-label">экономия краски за счет технологии</div>
         </div>
         <div class="stat">
           <div class="stat-num mono">1000 <span>м²</span></div>
@@ -502,27 +1490,404 @@
         <div class="media-badge-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <div class="media-badge-text"><b>Официальный договор</b><br>Гарантия на все выполненные работы</div>
+        <div class="media-badge-text"><b>Официальный договор</b><br>Фиксируем смету до старта и сдаем объект в чистом виде</div>
       </div>
     </div>
   </div>
 </section>
+  <section class="section" aria-label="Факты о компании">
+    <div class="section-card">
+      <div class="section-top full-width">
+        <div>
+          <div class="section-kicker"><span class="eyebrow-dot"></span>Коротко о работе</div>
+          <h2 class="section-title section-title--wide">Сдаём объекты в 3 раза быстрее ручной покраски и гарантируем результат</h2>
+        </div>
+      </div>
+
+      <div class="trust-grid">
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 2V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 2V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="3" y="4" width="18" height="17" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 9H21" stroke="currentColor" stroke-width="1.8"/><path d="M8 13H8.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M12 13H12.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M16 13H16.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="mono">15+ лет</span>
+          <h3>Опыт</h3>
+          <p>Опыт в покраске частных, коммерческих и промышленных объектов без экспериментов на вашем ремонте.</p>
+        </article>
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 19C16 16.7909 14.2091 15 12 15C9.79086 15 8 16.7909 8 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 19C5 17.5043 5.82017 16.2002 7.03428 15.5139" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M19 19C19 17.5043 18.1798 16.2002 16.9657 15.5139" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="mono">До 5 человек</span>
+          <h3>Гибкий масштаб</h3>
+          <p>Подбираем размер бригады под ваш объект — от 1 мастера для комнат до больших бригад для коммерческих площадей.</p>
+        </article>
+        <article class="info-card">
+          <div class="info-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 4C7.58172 4 4 7.58172 4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M20 12C20 7.58172 16.4183 4 12 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 20C16.4183 20 20 16.4183 20 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 12L16.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </div>
+          <span class="mono">До 1000 м² за 1 смену</span>
+          <h3>Скорость работы</h3>
+          <p>Высокая скорость безвоздушного метода позволяет сдавать объекты в 3-5 раз быстрее ручной покраски.</p>
+        </article>
+        <article class="info-card accent">
+          <div class="info-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 3H15L20 8V19C20 20.1046 19.1046 21 18 21H8C6.89543 21 6 20.1046 6 19V5C6 3.89543 6.89543 3 8 3Z" stroke="currentColor" stroke-width="1.8"/><path d="M15 3V8H20" stroke="currentColor" stroke-width="1.8"/><path d="M9 13H15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M9 17H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <span class="mono">Договор и смета</span>
+          <h3>Безопасность и гарантии</h3>
+          <p>Цена фиксируется в договоре до начала работ. Никаких внезапных доплат и скрытых платежей.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="section-card">
+      <div class="section-top full-width">
+        <div>
+          <div class="section-kicker"><span class="eyebrow-dot"></span>Услуги</div>
+          <h2 class="section-title section-title--services">Красим любые объёмы: от одной комнаты до крупных промышленных ангаров</h2>
+        </div>
+      </div>
+
+      <div class="segment-grid">
+        <article class="segment-card">
+          <div class="segment-visual segment-visual--residential">
+            <span class="segment-visual-label">Интерьеры и жилые объекты</span>
+          </div>
+          <div class="segment-copy">
+            <span class="segment-tag">Частные объекты</span>
+            <h3>Квартиры, дома, коттеджи</h3>
+            <p>Аккуратная покраска стен и потолков в жилых помещениях с защитой мебели, укрытием поверхностей и чистой сдачей объекта.</p>
+            <ul class="segment-points">
+              <li>Покраска стен и потолков любой сложности</li>
+              <li>Работаем с новостройками, вторичкой и частными домами</li>
+              <li>Подбираем темп работ под график заказчика</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="segment-card">
+          <div class="segment-visual segment-visual--industrial">
+            <span class="segment-visual-label">Склады, ангары, производство</span>
+          </div>
+          <div class="segment-copy">
+            <span class="segment-tag">Коммерция и промка</span>
+            <h3>Офисы, склады, ангары, производство</h3>
+            <p>Подходим для больших площадей, где критичны скорость, ровный прокрас и понятная организация работ без затягивания сроков.</p>
+            <ul class="segment-points">
+              <li>Высокая производительность на крупных объектах</li>
+              <li>Работаем с коммерческими и промышленными помещениями</li>
+              <li>Можно усиливать объект бригадой до 5 человек</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="prices">
+    <div class="section-card">
+      <div class="section-top full-width">
+        <div>
+          <div class="section-kicker"><span class="eyebrow-dot"></span>Прайс-лист</div>
+          <h2 class="section-title">Простая цена на старте и фиксированная смета</h2>
+        </div>
+      </div>
+
+      <div class="price-grid">
+        <article class="price-card">
+          <div class="price-copy">
+            <span class="price-tag">Стены</span>
+            <div class="price-value">от 100 <span>₽/м²</span></div>
+            <p>Для квартир, домов, офисов и коммерческих помещений. Итог зависит от объема и подготовки основания.</p>
+          </div>
+          <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-secondary">Рассчитать стоимость</a>
+        </article>
+        <article class="price-card">
+          <div class="price-copy">
+            <span class="price-tag">Потолки</span>
+            <div class="price-value">от 100 <span>₽/м²</span></div>
+            <p>Ровный прокрас без полос и перепадов. Особенно выгодно на больших потолочных площадях.</p>
+          </div>
+          <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-secondary">Заказать замер</a>
+        </article>
+        <article class="price-card">
+          <div class="price-copy">
+            <span class="price-tag">Крупные объекты</span>
+            <div class="price-value">Индивидуальный <span>расчет</span></div>
+            <p>Для складов, ангаров и производственных помещений. На больших площадях сдаём до 1000 м² за смену без потери качества.</p>
+          </div>
+          <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-secondary">Рассчитать стоимость</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="technology">
+    <div class="section-card">
+      <div class="section-top full-width">
+        <div>
+          <div class="section-kicker"><span class="eyebrow-dot"></span>Технология</div>
+          <h2 class="section-title">Технология безвоздушного окрашивания: почему результат идеален</h2>
+        </div>
+      </div>
+
+      <div class="benefit-grid">
+        <article class="list-card benefit-card">
+          <h3>Сравнение технологий</h3>
+          <div class="split-note">
+            <div class="mini-panel">
+              <h4>Обычная покраска</h4>
+              <p>Полосы, видимые стыки, подтёки и перерасход краски из-за человеческого фактора.</p>
+            </div>
+            <div class="mini-panel mini-panel--accent">
+              <h4>Безвоздушная технология</h4>
+              <p>Идеально ровный слой без следов инструмента. Экономия до 30% материала за счёт точного распыления.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="list-card benefit-card">
+          <h3>Главные преимущества</h3>
+          <ul class="result-list">
+            <li class="result-item">
+              <div class="result-number">01</div>
+              <div>
+                <div class="result-title">Никаких полос и разводов</div>
+                <div class="result-text">Ровное покрытие при любом освещении.</div>
+              </div>
+            </li>
+            <li class="result-item">
+              <div class="result-number">02</div>
+              <div>
+                <div class="result-title">Чистые углы и стыки</div>
+                <div class="result-text">Краска ложится однородно даже в труднодоступных местах.</div>
+              </div>
+            </li>
+            <li class="result-item">
+              <div class="result-number">03</div>
+              <div>
+                <div class="result-title">Без переплаты за материал</div>
+                <div class="result-text">Автоматика расходует краску строго по норме.</div>
+              </div>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="section-card">
+      <div class="section-top full-width">
+        <div>
+          <div class="section-kicker"><span class="eyebrow-dot"></span>Процесс</div>
+          <h2 class="section-title">От заявки до чистой сдачи объекта: как мы работаем</h2>
+        </div>
+      </div>
+
+      <article class="process-grid">
+        <article class="process-card">
+          <div class="process-number">01</div>
+          <div class="step-title">Заявка и быстрый контакт</div>
+          <div class="step-desc">Получаем фото, площадь или описание задачи. Даем первичное понимание по стоимости и срокам.</div>
+        </article>
+        <article class="process-card">
+          <div class="process-number">02</div>
+          <div class="step-title">Выезд на объект и замер</div>
+          <div class="step-desc">Приезжаем, оцениваем объем, тип поверхности, сложность доступа и фронт сопутствующих работ.</div>
+        </article>
+        <article class="process-card">
+          <div class="process-number">03</div>
+          <div class="step-title">Смета и закупка</div>
+          <div class="step-desc">Фиксируем стоимость до начала работ и помогаем с выбором состава под вашу задачу: от стандартных красок до защитных покрытий.</div>
+        </article>
+        <article class="process-card">
+          <div class="process-number">04</div>
+          <div class="step-title">Упаковка помещения</div>
+          <div class="step-desc">Полностью закрываем пол, мебель, окна и зоны примыкания, чтобы гарантировать идеальную чистоту.</div>
+        </article>
+        <article class="process-card">
+          <div class="process-number">05</div>
+          <div class="step-title">Безвоздушная покраска</div>
+          <div class="step-desc">Ровно наносим материал, строго выдерживаем технологию и контролируем качество слоя на всей площади объекта.</div>
+        </article>
+        <article class="process-card">
+          <div class="process-number">06</div>
+          <div class="step-title">Уборка и сдача</div>
+          <div class="step-desc">Сдаем объект в чистом состоянии, убираем за собой весь рабочий мусор и предоставляем официальную гарантию.</div>
+        </article>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="section-card">
+      <div class="section-top full-width">
+        <div>
+          <div class="section-kicker"><span class="eyebrow-dot"></span>Почему выбирают</div>
+          <h2 class="section-title section-title--wide">6 твёрдых аргументов, почему покраску доверяют нашей бригаде</h2>
+        </div>
+      </div>
+
+      <div class="why-grid">
+        <article class="why-card">
+          <div class="why-number">01 / Договор и смета</div>
+          <h3>Фиксируем условия заранее</h3>
+          <p>Фиксируем объем, точные сроки и финальную стоимость до начала работ. Никаких скрытых платежей.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">02 / Оптовые цены</div>
+          <h3>Экономим ваш бюджет</h3>
+          <p>Закупаем сертифицированные краски напрямую у дилеров, экономя до 15% вашего бюджета.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">03 / Топовое оборудование</div>
+          <h3>Немецкая техника без компромиссов</h3>
+          <p>Работаем на немецких безвоздушных аппаратах Wagner и Graco для идеально ровного слоя.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">04 / Защита интерьера</div>
+          <h3>Бережём готовый ремонт</h3>
+          <p>Используем премиальные статические пленки и деликатные ленты, сохраняющие ваш ремонт в безопасности.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">05 / Контроль качества</div>
+          <h3>Проверяем покрытие под светом</h3>
+          <p>Принимаем работу под прожекторами маляра (свет Lossew), исключая любые мелкие недочеты.</p>
+        </article>
+        <article class="why-card">
+          <div class="why-number">06 / Гарантия по договору</div>
+          <h3>Несём официальную ответственность</h3>
+          <p>Несем официальную юридическую ответственность за качество покрытия и стойкость цвета.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-card faq-block">
+      <div class="section-top section-top--single">
+        <h2 class="section-title section-title--wide">Отвечаем на частые вопросы</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Сколько стоит покраска?</h4>
+          <p>Базовая цена начинается от 100 ₽ за м². Точная сумма зависит от площади, высоты, подготовки основания и типа материала.</p>
+        </div>
+        <div class="faq-item">
+          <h4>С какими объектами вы работаете?</h4>
+          <p>С квартирами, домами, коттеджами, офисами, складами, ангарами и другими коммерческими и промышленными помещениями.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Как быстро можно получить расчет?</h4>
+          <p>Если отправить фото или площадь в WhatsApp, предварительный расчет можно получить примерно за 5 минут.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Даете ли гарантию?</h4>
+          <p>Да, гарантия предоставляется на 1 месяц и фиксируется в договоре вместе с объемом и условиями работ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cta" id="contacts">
+    <div class="section-card">
+      <div class="final-cta-card">
+        <div class="final-cta-copy">
+          <h3>Рассчитать стоимость в WhatsApp</h3>
+          <p>Нажмите на кнопку, пришлите фото или площадь объекта, и мы сориентируем вас по цене за 5 минут.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="https://wa.me/79531022282" target="_blank" rel="noopener" class="btn-large">Написать в WhatsApp</a>
+          <a href="tel:+79531022282" class="btn-secondary">Позвонить: +7 953 102-22-82</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <p class="site-footer__brand">БезРазводов</p>
+      <p class="site-footer__text">© 2026. Все права защищены.</p>
+    </div>
+    <div class="site-footer__contacts">
+      <a href="tel:+79531022282" class="site-footer__phone">+7 953 102-22-82</a>
+      <a href="#" class="site-footer__policy">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
 
 <script>
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobileMenu');
-  burger.addEventListener('click', () => {
-    burger.classList.toggle('active');
-    menu.classList.toggle('open');
+  const mobileLinks = menu.querySelectorAll('a');
+
+  function toggleMenu(forceState){
+    const isOpen = typeof forceState === 'boolean' ? forceState : !menu.classList.contains('open');
+    burger.classList.toggle('active', isOpen);
+    menu.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  burger.addEventListener('click', () => toggleMenu());
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      toggleMenu(false);
+    }
   });
 
   function setHeaderHeight(){
     const header = document.querySelector('header');
     document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
   }
+
   setHeaderHeight();
   window.addEventListener('resize', setHeaderHeight);
 </script>
+
+<!-- Yandex.Metrika counter -->
+<!--
+<script>
+  // Вставьте здесь код Яндекс Метрики
+</script>
+-->
+
+<!-- Google Tag Manager -->
+<!--
+<script>
+  // Вставьте здесь код Google Tag Manager
+</script>
+-->
+
+<!-- CRM webhook form handler example -->
+<!--
+<script>
+  const leadForm = document.querySelector('[data-lead-form]');
+
+  if (leadForm) {
+    leadForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(leadForm);
+
+      await fetch('https://example-crm-webhook.ru/leads', {
+        method: 'POST',
+        body: formData
+      });
+    });
+  }
+</script>
+-->
 
 </body>
 </html>
